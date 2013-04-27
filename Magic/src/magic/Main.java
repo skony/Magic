@@ -18,6 +18,9 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         Player[] players = UI.GetPlayers();
+        int rounds = UI.GetRounds();
+        Tournament tournament = new Tournament(rounds, players);
+        UI.PrintPairs(tournament.ChoosePairs());
     }
 
 }

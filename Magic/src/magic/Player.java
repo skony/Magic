@@ -16,7 +16,7 @@ public class Player {
         points = 0;
     }
 
-    public String GetNick(){
+    public String GetName(){
         return this.nick;
     }
 
