@@ -4,6 +4,7 @@
  */
 
 package magic;
+import ui.UI;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Player[] players = UI.GetPlayers();
     }
 
 }
