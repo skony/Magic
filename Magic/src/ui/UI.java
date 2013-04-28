@@ -16,11 +16,12 @@ public  class UI {
     public static Player[] GetPlayers(){
         System.out.println("Podaj ilosc graczy");
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        int n = sc.nextInt(); 
         Player[] players = new Player[n];
         System.out.println("Wpisz nazwy graczy");
-        for(int i=0; i<n; i++)
-            players[i] = new Player(sc.nextLine());
+        String pusta_linia = sc.nextLine();
+        for(int i=0; i<n; i++){
+            players[i] = new Player(sc.nextLine()); System.out.println("&& " + i + players[i].GetName());}
         return players;
     }
     public static int GetRounds(){
