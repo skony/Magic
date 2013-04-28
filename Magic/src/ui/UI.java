@@ -48,5 +48,28 @@ public  class UI {
             i++;
         }
     }
+    public static int[] EnterScores(Player[] pairs){
+        int n = pairs.length;
+        int[] scores = new int[n];
+        int i=0;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Podaj rezultaty");
+        while(true){
+            System.out.println(pairs[i].GetName() + ":");
+            scores[i] = sc.nextInt();
+            i++;
+            System.out.println(pairs[i].GetName() + ":");
+            scores[i] = sc.nextInt();
+            if(i+2 == n){
+                scores[i+1] = 2;
+                break;
+            }
+            if(i+1 == n)
+                break;
+            i++;
+        }
+        return scores;
+
+    }
 
 }

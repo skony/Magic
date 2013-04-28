@@ -38,6 +38,17 @@ public class Tournament {
         }
         return pairs;
     }
+    public void EnterScores(Player[] pairs, int[] scores){
+        int n =pairs.length; int i = 0;
+        while(true){
+            table.AddMatch(pairs[i], pairs[i+1], scores[i], scores[i+1]);
+            if(i+3 == n)
+                table.AddBye(pairs[i+2]);
+            if(i+2 == n)
+                break;
+            i+=2;
+        }
+    }
     private int rounds;
     private int present_round;
     private Table table;

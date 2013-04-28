@@ -4,6 +4,7 @@
  */
 
 package magic;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,6 +15,7 @@ public class Player {
     public Player(String nick){
         this.nick = nick;
         points = 0;
+        history = new ArrayList();
     }
 
     public String GetName(){
@@ -26,7 +28,12 @@ public class Player {
     public void AddPoints(int points){
         this.points += points;
     }
+    public void AddToHistory(Player enemy, int score){
+        points += score;
+        history.add(new Match(enemy, score));
+    }
 
     private String nick;
     private int points;
+    private ArrayList history;
 }
