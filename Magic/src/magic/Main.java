@@ -20,9 +20,10 @@ public class Main {
         Player[] players = UI.GetPlayers();
         int rounds = UI.GetRounds();
         Tournament tournament = new Tournament(rounds, players);
+        while(true){
         Player[] pairs = tournament.ChoosePairs();
         UI.PrintPairs(pairs);
-        tournament.EnterScores(pairs, UI.EnterScores(pairs));
+        tournament.EnterScores(pairs, UI.EnterScores(pairs));}
     }
 
 }

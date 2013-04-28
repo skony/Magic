@@ -15,7 +15,11 @@ public class Player {
     public Player(String nick){
         this.nick = nick;
         points = 0;
+        wins = 0;
         history = new ArrayList();
+    }
+    public Player(int fake_points){
+        points = fake_points;
     }
 
     public String GetName(){
@@ -30,10 +34,24 @@ public class Player {
     }
     public void AddToHistory(Player enemy, int score){
         points += score;
+        if(score == 2 || score == 3)
+            ++wins;
         history.add(new Match(enemy, score));
+    }
+    public int GetScoreWhithEnemy(Player E){
+        for(int i=0;i<history.size();i++){
+            Match match = (Match)history.get(i);
+            if(match.GetEnemyInMatch() == E)
+                return match.GetScoreInMatch();
+        }
+        return -1;
+    }
+    public int GetWins(){
+        return wins;
     }
 
     private String nick;
     private int points;
+    private int wins;
     private ArrayList history;
 }

@@ -18,16 +18,17 @@ public class Tournament {
     }
     public Player[]  ChoosePairs(){
         present_round++;
-        Player[] pairs = new Player[table.GetPlayersNumber()];
+        int n = table.GetPlayersNumber();
+        Player[] pairs = new Player[n];
         int j = 0;
         if(present_round == 1){
-            boolean[] used = new boolean[table.GetPlayersNumber()];
-            for(int i=0;i<used.length;i++)
+            boolean[] used = new boolean[n];
+            for(int i=0;i<n;i++)
                 used[i] = false;
             int chosen = 0, shot;
             Random rand = new Random();
-            while(chosen < used.length){
-                shot = rand.nextInt(used.length);
+            while(chosen < n){
+                shot = rand.nextInt(n);
                 if(used[shot] == false){
                     pairs[j] = table.GetPlayerWhithIndex(shot);
                     used[shot] = true;
@@ -36,14 +37,21 @@ public class Tournament {
                 }
             }
         }
+        else{
+            Player[] rank = table.CreateRank();
+            for(int i=0;i<n;i++)
+                for(int j=0;j<n;j++)
+        }
         return pairs;
     }
     public void EnterScores(Player[] pairs, int[] scores){
         int n =pairs.length; int i = 0;
         while(true){
             table.AddMatch(pairs[i], pairs[i+1], scores[i], scores[i+1]);
-            if(i+3 == n)
+            if(i+3 == n){
                 table.AddBye(pairs[i+2]);
+                break;
+            }
             if(i+2 == n)
                 break;
             i+=2;

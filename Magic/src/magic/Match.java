@@ -14,6 +14,12 @@ public class Match {
         this.enemy = enemy;
         this.score = score;
     }
+    public Player GetEnemyInMatch(){
+        return enemy;
+    }
+    public int GetScoreInMatch(){
+        return score;
+    }
     private Player enemy;
     private int score;
 
