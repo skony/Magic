@@ -20,11 +20,11 @@ public class Tournament {
         present_round++;
         int n = table.GetPlayersNumber();
         Player[] pairs = new Player[n];
-        int j = 0;
-        if(present_round == 1){
-            boolean[] used = new boolean[n];
-            for(int i=0;i<n;i++)
+        boolean[] used = new boolean[n];
+        for(int i=0;i<n;i++)
                 used[i] = false;
+        int j = 0;
+        if(present_round == 1){ //1.runda
             int chosen = 0, shot;
             Random rand = new Random();
             while(chosen < n){
@@ -37,10 +37,44 @@ public class Tournament {
                 }
             }
         }
-        else{
+        else{ //pozostałe rundy
             Player[] rank = table.CreateRank();
-            for(int i=0;i<n;i++)
-                for(int j=0;j<n;j++)
+            if(n%2 == 0){//nie ma bye
+                pairs[0] = rank[0];
+                used[0] = true;
+                for(int i=1;i<n;i++)
+                    for( j=1;j<n;j++)
+                        if(i%2 == 0 && used[j] == false){ //pierwszy z pary
+                            pairs[i] = rank[j];
+                            used[j] = true;
+                            break;
+                        }
+                        else if(i%2 == 1 && used[j]==false && rank[j].GetScoreWhithEnemy(pairs[i-1])==-1){ //drugi z pary
+                            pairs[i] = rank[j];
+                            used[j] = true;
+                            break;
+                        }
+            }
+            else{// jest bye
+                for( j=n-1;j>=0;j--)//wlepienie komus bye najpierw
+                    if(rank[j].CheckBye()==false){
+                        pairs[n-1] = rank[j];
+                        used[j] = true;
+                        break;
+                    }
+                for(int i=0;i<n-1;i++)
+                    for( j=0;j<n;j++)
+                        if(i%2 == 0 && used[j] == false){ //pierwszy z pary
+                            pairs[i] = rank[j];
+                            used[j] = true;
+                            break;
+                        }
+                        else if(i%2 == 1 && used[j]==false && rank[j].GetScoreWhithEnemy(pairs[i-1])==-1){ //drugi z pary
+                            pairs[i] = rank[j];
+                            used[j] = true;
+                            break;
+                        }
+            }
         }
         return pairs;
     }

@@ -17,6 +17,7 @@ public class Player {
         points = 0;
         wins = 0;
         history = new ArrayList();
+        bye = false;
     }
     public Player(int fake_points){
         points = fake_points;
@@ -37,6 +38,8 @@ public class Player {
         if(score == 2 || score == 3)
             ++wins;
         history.add(new Match(enemy, score));
+        if(enemy == null)
+            bye = true;
     }
     public int GetScoreWhithEnemy(Player E){
         for(int i=0;i<history.size();i++){
@@ -49,9 +52,13 @@ public class Player {
     public int GetWins(){
         return wins;
     }
+    public boolean CheckBye(){
+        return bye;
+    }
 
     private String nick;
     private int points;
     private int wins;
     private ArrayList history;
+    private boolean bye;
 }
